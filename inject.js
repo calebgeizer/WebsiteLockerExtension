@@ -1,6 +1,12 @@
 // this is the code which will be injected into a given page...
 
 (function() {
+
+	try{chrome.storage.sync.get(["websites"],function(){})}catch(err){
+		alert('Setup needed, right-click on the extension and press options.');
+		return;
+	}
+
 	var success = false;
 	var finishTime = localStorage.getItem('myTime');
 	var timeLeft = (finishTime - new Date());

@@ -1,6 +1,5 @@
 var timeLeft;
 var time = 0;
-//window.scrollTo(0, 0);
 
 chrome.storage.sync.get(["finishTime"], function(items) {
     var allKeys = Object.keys(items);
