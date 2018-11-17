@@ -62,7 +62,7 @@ var interval = setInterval(function(){
     if(timesRun === 1){
         clearInterval(interval);
     }
-    document.getElementById('message532').style = 'display:none;';
+    try{document.getElementById('message532').style = 'display:none;';}catch(err){}
 }, 3500); 
 
 
