@@ -4,8 +4,6 @@ var time = 0;
 chrome.storage.sync.get(["finishTime"], function(items) {
     var allKeys = Object.keys(items);
     var allValues = Object.values(items);
-    console.log(allKeys);
-    console.log(allValues);
 
 
     var timeLeft = (allValues[0] - new Date());
@@ -13,13 +11,13 @@ chrome.storage.sync.get(["finishTime"], function(items) {
     var message = '<div id="message532" style="z-index: 1;margin: auto;width: 100%;height: 30px;position: fixed;bottom: 50%;"><div id="notification" style="font-size: 14px;box-shadow: 0px 3px 6px;margin: auto;color: black;z-index: 100;position: relative;width: 200px;border-radius: 10px;padding: 4px 0px;background: lightgrey;text-align: center;font-family: monospace;top: 0;">'+ Math.ceil(Math.max(timeLeft/60000,0)) + " mins left"+'<button style=\"margin-left: 10px;border-radius: 14px;\">X</button></div></div>';
 
 
-	var my_elem = document.body;
+    var my_elem = document.body;
 
-	var span = document.createElement('span');
-	    span.innerHTML = message;
-	    span.className = 'minutesLeft';
-	    span.style = "z-index: 9999;position: absolute;";
-	    span.setAttribute("onClick","this.style='display:none;'");
+    var span = document.createElement('span');
+        span.innerHTML = message;
+        span.className = 'minutesLeft';
+        span.style = "z-index: 9999;position: absolute;";
+        span.setAttribute("onClick","this.style='display:none;'");
 
 
 
@@ -31,29 +29,28 @@ chrome.storage.sync.get(["finishTime"], function(items) {
         blockWeb.style = "z-index: 9999;position: fixed; width:100%;height:100%; background:white;";
 
 
-    	chrome.storage.sync.get([ "websites"], function(items) {
-    	    var allValues = Object.values(items);
-    	    websites = allValues + '';
+        chrome.storage.sync.get([ "websites"], function(items) {
+            var allValues = Object.values(items);
+            websites = allValues + '';
 
-    	    var websites = websites.split(";");
+            var websites = websites.split(";");
             var otherWeb;
-    	    console.log(websites);
 
 
+            for (var i = websites.length - 1; i >= 0; i--) {
+                var withWorld = ('www.' + websites[i]);
+                var withoutWorld = (websites[i].replace('www.',''));
+                if (window.location.host == websites[i] || window.location.host == withWorld || window.location.host == withoutWorld) {
+                    my_elem.parentNode.insertBefore(span, my_elem);
 
-    	    for (var i = websites.length - 1; i >= 0; i--) {
-                console.log(('www.' + websites[i]));
-                if (window.location.host == websites[i] || window.location.host == (websites[i].replace('www.','') || (window.location.host == ('www.' + websites[i])))) {
-					my_elem.parentNode.insertBefore(span, my_elem);
-
-					if (timeLeft <= 0 || isNaN(timeLeft)) {
-        				//window.location.replace("https://blank.org/");
+                    if (timeLeft <= 0 || isNaN(timeLeft)) {
+                        //window.location.replace("https://blank.org/");
                         my_elem.parentNode.insertBefore(blockWeb, my_elem);
                         my_elem.style = 'overflow:hidden;';
-					}
-    	    	}
-    	    } 
-    	});
+                    }
+                }
+            } 
+        });
 });
 
 var timesRun = 0;
@@ -64,8 +61,3 @@ var interval = setInterval(function(){
     }
     try{document.getElementById('message532').style = 'display:none;';}catch(err){}
 }, 3500); 
-
-
-
-
-

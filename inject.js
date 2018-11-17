@@ -1,5 +1,3 @@
-// this is the code which will be injected into a given page...
-
 (function() {
 
 	try{chrome.storage.sync.get(["websites"],function(){})}catch(err){
@@ -34,7 +32,6 @@
 		    localStorage.setItem('myTime', ((new Date()).getTime() + allValues * 60000));
 		    success = true;
 	    }
-	    console.log('got minutes');
     });
 
 
@@ -55,9 +52,6 @@
               	console.log('Settings saved');
             });
 
-          	if(localStorage.getItem('myTime')){
-          		console.log(localStorage.getItem('myTime'));
-          	}
             if (timeoutID != undefined) window.clearTimeout(timeoutID);
             Update();
         }
