@@ -24,7 +24,7 @@ chrome.storage.sync.get(["finishTime"], function(items) {
 
 
 
-    var blockMessage = '<div id="blocked" style="position: absolute;height: 100%;width: 100%;top: 0px;background: white;"><h1 style="text-align: center;padding-top: 100px;">Website Locked</h1><div  style="text-align: center;">Press the extension icon to unblock the website.</div><div>';
+    var blockMessage = '<div id="blocked" style="position: absolute;height: 100%;width: 100%;top: 0px;background: white;"><h1 style="text-align: center;padding-top: 100px;">Website Locked</h1><div  style="text-align: center;">Press the extension icon to unlock the website.</div><div>';
 
     var blockWeb = document.createElement('span');
         blockWeb.innerHTML = blockMessage;
@@ -46,7 +46,7 @@ chrome.storage.sync.get(["finishTime"], function(items) {
     	    	if (window.location.host == websites[i] || window.location.host == (websites[i].replace('www.',''))) {
 					my_elem.parentNode.insertBefore(span, my_elem);
 
-					if (timeLeft <= 0 || timeLeft == NaN) {
+					if (timeLeft <= 0 || isNaN(timeLeft)) {
         				//window.location.replace("https://blank.org/");
                         my_elem.parentNode.insertBefore(blockWeb, my_elem);
                         my_elem.style = 'overflow:hidden;';
