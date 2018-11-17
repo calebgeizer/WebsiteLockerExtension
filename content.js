@@ -42,7 +42,8 @@ chrome.storage.sync.get(["finishTime"], function(items) {
 
 
     	    for (var i = websites.length - 1; i >= 0; i--) {
-    	    	if (window.location.host == websites[i] || window.location.host == (websites[i].replace('www.',''))) {
+                console.log(('www.' + websites[i]));
+                if (window.location.host == websites[i] || window.location.host == (websites[i].replace('www.','') || (window.location.host == ('www.' + websites[i])))) {
 					my_elem.parentNode.insertBefore(span, my_elem);
 
 					if (timeLeft <= 0 || isNaN(timeLeft)) {
