@@ -1,9 +1,9 @@
 (function() {
 
-	try{chrome.storage.sync.get(["websites"],function(){})}catch(err){
-		alert('Setup needed, right-click on the extension and press options.');
-		return;
-	}
+	// try{chrome.storage.sync.get(["websites"],function(){})}catch(err){
+	// 	alert('Setup needed, right-click on the extension and press options.');
+	// 	return;
+	// }
 
 	var success = false;
 	var finishTime = localStorage.getItem('myTime');
@@ -11,12 +11,20 @@
 	var minTimeLeft = Math.max(timeLeft/1000,0);
 	var reblock = false;
 
-	if (minTimeLeft > 0) {
-		//reblock
-		reblock = true;
-	}else{
-		if (confirm("Are you sure?") == false) {return;}
-	}
+	// if (minTimeLeft > 0) {
+	// 	//reblock
+	// 	reblock = true;
+	// }else{
+	// 	// if (confirm("Are you sure?") == false) {return;}
+	// }
+
+	// if lock button, reblock it.
+	chrome.storage.sync.get([ "locked"], function(items) {
+		var allValues = Object.values(items);
+		if (allValues[0] == true) {
+			reblock = true;
+		}
+	});
 
 	chrome.storage.sync.get([ "minutes"], function(items) {
 	    var allValues = Object.values(items);

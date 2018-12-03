@@ -3,19 +3,33 @@
 <head><title>Options</title></head>
 <body>
 
-Blocked Websites (split with semi-colon)<br>
+	<div style="display: flex;">
+		<button id="clickme" style="width: 50%;margin-bottom: 15px;">unlock</button>
+		<button id="lock" style="width: 50%;margin-bottom: 15px;">lock</button>
+	</div>
+	<script src="background.js"></script>
+
+Block Websites:
+
+<form style="display: flex;margin: 10px 0px;">
+    <div style="width: 50%;text-align: center;"><input type="radio" name="list" id="blacklist" value="blacklist" checked="">Blacklist</div>
+    <div style="width: 50%;text-align: center;"><input type="radio" name="list" id="whitelist" value="whitelist">Whitelist<br></div>
+</form>
+
+	List of Websites (split with a semi-colon)<br>
 
 <label>
-  <textarea id="websites" rows="3" cols="50">www.example.com;www.example2.com</textarea>
+  <textarea id="websites" rows="5" cols="35" style="margin-bottom: 15px;margin-top: 10px;"></textarea>
 </label><br>
 
-<label>
-  <input id="minutes" type="number" value="0" step=10 />
+
+<label style="text-align: center;width: 100%;display: block;">
+  <input id="minutes" type="number" value="0" step="10" style="width: 15%;margin: 0px 15px 10px 0px;">
   Minutes Unblocked
 </label>
 
 <div id="status"></div>
-<button id="save">Save</button>
+<button id="save" style="width: 100%;">Save</button>
 
 <script src="options.js"></script>
 </body>

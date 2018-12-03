@@ -2,9 +2,13 @@
 function save_options() {
   var websites = document.getElementById('websites').value;
   var minutes = document.getElementById('minutes').value;
+  var whitelist = document.getElementById('whitelist').checked;
+  var blacklist = document.getElementById('blacklist').checked;
+
   chrome.storage.sync.set({
     'websites': websites,
-    'minutes': minutes
+    'minutes': minutes,
+    'list' : whitelist
   }, function() {
     // Update status to let user know options were saved.
     var status = document.getElementById('status');
@@ -13,7 +17,6 @@ function save_options() {
       status.textContent = '';
     }, 750);
   });
-  console.log(websites + " " + minutes);
   console.log("options saved");
 }
 
@@ -22,11 +25,13 @@ function save_options() {
 function restore_options() {
   // Use default value color = 'red' and likesColor = true.
   chrome.storage.sync.get({
-    websites: 'www.facebook.com;www.reddit.com;www.youtube.com',
-    minutes: '30'
+    websites: 'www.example.com;www.example2.com',
+    minutes: '0',
+    list: 'false'
   }, function(items) {
     document.getElementById('websites').value = items.websites;
     document.getElementById('minutes').value = items.minutes;
+    document.getElementById('whitelist').checked = items.list;
   });
 }
 document.addEventListener('DOMContentLoaded', restore_options);

@@ -11,7 +11,8 @@
     "persistent": true
   },
   "browser_action": {
-    "default_title": "Unlock/Lock"
+    "default_title": "Unlock/Lock",
+    "default_popup": "options.html"
   },
   "content_scripts": [
       {
