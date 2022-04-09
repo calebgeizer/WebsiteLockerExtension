@@ -1,6 +1,6 @@
 {
   "name": "Website Locker",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "manifest_version": 2,
   "description": "Put time-wasting websites in a vault and press the extension icon to unlock it for a period of time.",
   "homepage_url": "https://github.com/calebgeizer",
@@ -21,7 +21,7 @@
           "https://*/*"
           ],
       "js": ["content.js"],
-      "run_at": "document_end"         // pay attention to this line
+      "run_at": "document_end"
       }
   ], 
   "options_page": "options.html",
@@ -32,7 +32,6 @@
   "permissions": [
     "https://*/*",
     "http://*/*",
-    "tabs",
     "storage"
   ]
 }
